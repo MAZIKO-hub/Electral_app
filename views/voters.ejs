@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/voters.css">
+    <title>voters</title>
+</head>
+<body>
+    <div id="header">
+        <h1>VOTERS</h1>
+    </div>
+    <nav>
+        <a href="/vote.ejs">Vote</a> |
+        <a href="/home.ejs">home</a> |
+        <a href="/candidates.ejs">Candidates</a> |
+        <a href="/parties.ejs">Parties</a>
+    </nav>
+    <h1>List of Voters</h1>
+    <ul>
+        <% voters.forEach(voter => { %>
+            <li><%= voter.name %> - <%= voter.email %></li>
+        <% }); %>
+    </ul>
+</body>
+</html>
