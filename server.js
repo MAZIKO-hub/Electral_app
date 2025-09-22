@@ -7,10 +7,8 @@ const path = require("path");
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 app.use(express.static(path.join(__dirname, "public")));
-
-const vote_routes = require('./routes/home');
-app.use('/', vote_routes);
-
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 const dbs = mysql.createConnection({
     host: 'localhost',
@@ -26,7 +24,24 @@ dbs.connect(error=>{
         process.exit(1);
     }
     console.log(`database connected ${dbs.threadId}`);
+
+    const vote_routes = require('./routes/home');
+    app.use('/', vote_routes);
+    const candidate_routes = require('./routes/candidates')(dbs);
+    app.use('/candidates', candidate_routes);
+
+    app.use((err, req, res, next) => {
+        console.error(err.stack);
+        res.status(500).send('Something broke!');
+    });
+
+    app.use((req, res) => {
+        res.status(404).render('404', { title: 'Page Not Found' }); 
+    });
+
     app.listen(PORT, () => {
         console.log(`Server running at http://localhost:${PORT}`);
     });
 });
+
+

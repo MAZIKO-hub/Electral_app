@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Candidate</title>
+    <link rel="stylesheet" href="/css/add_candidates.css">
+</head>
+<body>
+    <div class="header">
+         <h2>Add Candidate</h2> 
+    </div>
+    <form action="/candidates/add" method="POST">
+        <label for="name">Name:</label>
+        <input type="text" name="name" required><br><br>
+        <label for="party">Party:</label>
+        <input type="text" name="party" required><br><br>
+        <button type="submit">Add</button>
+    </form>
+</body>
+</html>
