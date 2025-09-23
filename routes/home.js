@@ -10,8 +10,8 @@ router.get("/candidates", (req, res) => {
 router.get("/home", (req, res) => {
     res.render("home");
 });
-router.get("/voters", (req, res) => {
-    res.render("voters");
+router.get("/vote", (req, res) => {
+    res.render("vote");
 });
 
 module.exports = router;

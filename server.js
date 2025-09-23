@@ -29,6 +29,8 @@ dbs.connect(error=>{
     app.use('/', vote_routes);
     const candidate_routes = require('./routes/candidates')(dbs);
     app.use('/candidates', candidate_routes);
+    const vote = require('./routes/vote')(dbs);
+    app.use('/vote', vote);  
 
     app.use((err, req, res, next) => {
         console.error(err.stack);

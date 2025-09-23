@@ -1,22 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Candidate</title>
     <link rel="stylesheet" href="/css/edit_candidates.css">
 </head>
-<body>
-    <h2>Edit Candidate</h2>
-    <form action="/candidates/edit" method="POST">
-        <label for="id">Candidate ID:</label>
-        <input type="number" name="id" required><br><br>
-        <label for="newName">New Name:</label>
-        <input type="text" name="newName" required><br><br>
-        <label for="newParty">New Party:</label>
-        <input type="text" name="newParty" required><br><br>
-        <button type="submit">Update</button>
-    </form>
 
+<body>
+    <div id="header">
+        <h1>Edit Candidate</h1>
+    </div>
+    <div id="main">
+        <h2>Update Candidate Details</h2>
+        <form action="/candidates/edit" method="POST">
+            <fieldset>
+                <legend>Identify Candidate</legend>
+                <label for="id">Candidate ID:</label><br>
+                <input type="number" id="id" name="id" required><br><br>
+            </fieldset>
+            <fieldset>
+                <legend>Party</legend>
+                <label for="party">Select New Party:</label><br>
+                <select id="party" name="newParty" required>
+                    <option value="">-- Select a Party --</option>
+                    <option value="1">Party A</option>
+                    <option value="2">Party B</option>
+                    <option value="3">Party C</option>
+                </select><br><br>
+            </fieldset>
+            <fieldset>
+                <legend>Position</legend>
+                <label for="position">Select New Position:</label><br>
+                <select id="position" name="newPosition" required>
+                    <option value="">-- Select a Position --</option>
+                    <option value="1">President</option>
+                    <option value="2">Member of Parliament</option>
+                    <option value="3">Councillor</option>
+                </select><br><br>
+            </fieldset>
+
+            <button type="submit">Update Candidate</button>
+        </form>
+        <div class="back">
+            <a href="/candidates">Back to Candidates</a>
+        </div>
+    </div>
 </body>
+
 </html>

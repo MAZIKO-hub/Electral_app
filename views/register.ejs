@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Voter Registration</title>
+    <link rel="stylesheet" href="/css/register.css">
+</head>
+
+<body>
+    <div id="header">
+        <h1>Voter Registration</h1>
+    </div>
+    <div id="main">
+        <h2>Register as a Voter</h2>
+        <form action="/voter/register" method="POST">
+            <fieldset>
+                <legend>Personal Information</legend>
+
+                <label for="nationalID">National ID:</label><br>
+                <input type="text" id="nationalID" name="nationalID" required><br><br>
+
+                <label for="firstName">First Name:</label><br>
+                <input type="text" id="firstName" name="firstName" required><br><br>
+
+                <label for="surname">Surname:</label><br>
+                <input type="text" id="surname" name="surname" required><br><br>
+
+                <label for="gender">Gender:</label><br>
+                <select id="gender" name="gender" required>
+                    <option value="">-- Select Gender --</option>
+                    <option value="M">Male</option>
+                    <option value="F">Female</option>
+                </select><br><br>
+
+                <label for="age">Age:</label><br>
+                <input type="number" id="age" name="age" min="18" required><br><br>
+            </fieldset>
+            <fieldset>
+                <legend>Voter Information</legend>
+
+                <label for="status">Status:</label><br>
+                <select id="status" name="status" required>
+                    <option value="Active">Active</option>
+                    <option value="Inactive">Inactive</option>
+                </select><br><br>
+
+                <label for="pollingStation">Polling Station:</label><br>
+                <select id="pollingStation" name="pollingStationID" required>
+                    <option value="">-- Select Polling Station --</option>
+                    <option value="1">Station 1</option>
+                    <option value="2">Station 2</option>
+                    <option value="3">Station 3</option>
+                </select><br><br>
+            </fieldset>
+
+            <button type="submit">Register</button>
+        </form>
+        <div class="back">
+            <a href="/vote">Go back to Vote page</a>
+    </div>
+</body>
+
+</html>

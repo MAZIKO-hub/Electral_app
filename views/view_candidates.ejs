@@ -1,33 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>View Candidates</title>
     <link rel="stylesheet" href="/css/view_candidates.css">
 </head>
-<body>
-    <h2>All Candidates</h2>
-    <table border="1">
-        <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Party</th>
-        </tr>
-        <% candidates.forEach(c=> { %>
-            <tr>
-                <td>
-                    <%= c.CandidateID %>
-                </td>
-                <td>
-                    <%= c.Name %>
-                </td>
-                <td>
-                    <%= c.PartyID %>
-                </td>
-            </tr>
-            <% }) %>
-    </table>
 
+<body>
+    <div id="header">
+        <h1>All Registered Candidates</h1>
+    </div>
+    <div id="main">
+        <h2>Candidate List</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>National ID</th>
+                    <th>Party</th>
+                    <th>Position</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% candidates.forEach(c=> { %>
+                    <tr>
+                        <td>
+                            <%= c.CandidateID %>
+                        </td>
+                        <td>
+                            <%= c.NationalID %>
+                        </td>
+                        <td>
+                            <%= c.PartyID %>
+                        </td>
+                        <td>
+                            <%= c.PositionID %>
+                        </td>
+                    </tr>
+                    <% }) %>
+            </tbody>
+        </table>
+        <div class="back">
+            <a href="/candidates">Back to Candidates</a>
+        </div>
+    </div>
 </body>
+
 </html>
