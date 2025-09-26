@@ -26,6 +26,7 @@ app.use('/candidates', candidate_routes);
 const vote = require('./routes/vote')(dbs);
 app.use('/vote', vote);
 
+// post for registering a voter
 app.post("/voter/register", (req, res) => {
     const { nationalID, firstName, surname, gender, age, status, pollingStationID } = req.body;
 
