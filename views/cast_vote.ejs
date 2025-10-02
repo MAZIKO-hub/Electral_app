@@ -4,14 +4,102 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/cast_vote.css">
-    <title>Cast Vote</title>
+    <link rel="stylesheet" href="/css/vote.css">
+    <title>
+        <%= title %>
+    </title>
+    <style>
+    </style>
 </head>
 
 <body>
-    <h1>Cast Your Vote</h1>
-    <p>This page will hold the form where voters choose their candidate.</p>
-    <a href="/vote">⬅ Back to Vote Menu</a>
+    <div class="sidebar">
+        <a href="/vote">Vote</a>
+        <a href="/voters">Voters</a>
+        <a href="/candidates">Candidates</a>
+        <a href="/parties">Parties</a>
+    </div>
+
+    <div class="main-content">
+        <div id="header">
+            <h1>Cast Your Vote</h1>
+        </div>
+
+        <!-- All Candidates Form -->
+        <form action="/vote/submit_vote" method="POST" class="voting-section">
+            <!-- Presidents -->
+            <h2>Vote for President</h2>
+            <select name="president" required onchange="showDetails(this, 'presidentDetails')">
+                <option value="" disabled selected>Select a President</option>
+                <% presidents.forEach(candidate=> { %>
+                    <option value="<%= candidate.CandidateID %>" data-fname="<%= candidate.FirstName %>"
+                        data-sname="<%= candidate.Surname %>" data-party="<%= candidate.PartyName || 'Independent' %>"
+                        data-position="<%= candidate.Position %>">
+                        <%= candidate.FirstName %>
+                            <%= candidate.Surname %>
+                                (<%= candidate.PartyName || 'Independent' %>)
+                    </option>
+                    <% }); %>
+            </select>
+            <div id="presidentDetails" class="details"></div>
+
+            <!-- MPs -->
+            <h2>Vote for Member of Parliament</h2>
+            <select name="mp" required onchange="showDetails(this, 'mpDetails')">
+                <option value="" disabled selected>Select an MP</option>
+                <% mps.forEach(candidate=> { %>
+                    <option value="<%= candidate.CandidateID %>" data-fname="<%= candidate.FirstName %>"
+                        data-sname="<%= candidate.Surname %>" data-party="<%= candidate.PartyName || 'Independent' %>"
+                        data-position="<%= candidate.Position %>">
+                        <%= candidate.FirstName %>
+                            <%= candidate.Surname %>
+                                (<%= candidate.PartyName || 'Independent' %>)
+                    </option>
+                    <% }); %>
+            </select>
+            <div id="mpDetails" class="details"></div>
+
+            <!-- Councillors -->
+            <h2>Vote for Councillor</h2>
+            <select name="councillor" required onchange="showDetails(this, 'councillorDetails')">
+                <option value="" disabled selected>Select a Councillor</option>
+                <% councillors.forEach(candidate=> { %>
+                    <option value="<%= candidate.CandidateID %>" data-fname="<%= candidate.FirstName %>"
+                        data-sname="<%= candidate.Surname %>" data-party="<%= candidate.PartyName || 'Independent' %>"
+                        data-position="<%= candidate.Position %>">
+                        <%= candidate.FirstName %>
+                            <%= candidate.Surname %>
+                                (<%= candidate.PartyName || 'Independent' %>)
+                    </option>
+                    <% }); %>
+            </select>
+            <div id="councillorDetails" class="details"></div>
+
+            <button type="submit" class="submit-btn">Submit All Votes</button>
+        </form>
+    </div>
+
+    <script>
+        function showDetails(selectEl, detailsId) {
+            const option = selectEl.options[selectEl.selectedIndex];
+            if (!option || !option.value) return;
+
+            const fname = option.getAttribute("data-fname");
+            const sname = option.getAttribute("data-sname");
+            const party = option.getAttribute("data-party");
+            const position = option.getAttribute("data-position");
+
+            const detailsDiv = document.getElementById(detailsId);
+            detailsDiv.innerHTML = `
+                <table class="details-table">
+                    <tr><th>First Name</th><td>${fname}</td></tr>
+                    <tr><th>Surname</th><td>${sname}</td></tr>
+                    <tr><th>Party</th><td>${party}</td></tr>
+                    <tr><th>Position</th><td>${position}</td></tr>
+                </table>
+            `;
+        }
+    </script>
 </body>
 
 </html>

@@ -67,3 +67,24 @@ body {
      color: #fff;
      text-decoration: none;
  }
+   .details-table {
+       margin: 15px auto;
+       border-collapse: collapse;
+       width: 50%;
+   }
+
+   .details-table th,
+   .details-table td {
+       border: 1px solid #1554b3;
+       padding: 8px;
+       text-align: left;
+   }
+
+   .details-table th {
+       background-color: #1554b3;
+       color: white;
+   }
+
+   .details {
+       margin-bottom: 20px;
+   }

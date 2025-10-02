@@ -26,43 +26,7 @@ app.use('/candidates', candidate_routes);
 const vote = require('./routes/vote')(dbs);
 app.use('/vote', vote);
 
-// post for registering a voter
-app.post("/voter/register", (req, res) => {
-    const { nationalID, firstName, surname, gender, age, status, pollingStationID } = req.body;
-
-    const insertPerson = `
-        INSERT INTO Person (NationalID, FirstName, Surname, Gender, Age)
-        VALUES (?, ?, ?, ?, ?)
-        ON DUPLICATE KEY UPDATE 
-            FirstName = VALUES(FirstName),
-            Surname = VALUES(Surname),
-            Gender = VALUES(Gender),
-            Age = VALUES(Age)
-    `;
-
-    dbs.query(insertPerson, [nationalID, firstName, surname, gender, age], (err) => {
-        if (err) {
-            console.error("Error inserting into Person:", err);
-            return res.status(500).send("Error saving person.");
-        }
-
-        const insertVoter = `
-            INSERT INTO Voter (Status, NationalID, PollingStationID)
-            VALUES (?, ?, ?)
-        `;
-
-        dbs.query(insertVoter, [status, nationalID, pollingStationID], (err) => {
-            if (err) {
-                console.error("Error inserting into Voter:", err);
-                return res.status(500).send("Error saving voter.");
-            }
-
-            console.log("Voter registered:", nationalID);
-            res.redirect("/vote");
-        });
-    });
-});
-
+// Error handlers at the end
 app.use((err, req, res, next) => {
     console.error(err.stack);
     res.status(500).send('Something broke!');

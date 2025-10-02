@@ -1,5 +1,82 @@
 * {
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #2d3542;
+    /* dark main background */
+    color: white;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+/* Header */
+#header {
+    background-color: #1554b3;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    font-size: 22px;
+    font-weight: bold;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+/* Layout wrapper */
+.wrapper {
+    display: flex;
+    flex: 1;
+    height: 100%;
+}
+
+/* Sidebar nav */
+nav {
+    width: 200px;
+    background-color: #1f3a66;
+    display: flex;
+    flex-direction: column;
+    padding-top: 30px;
+}
+
+nav a {
+    padding: 15px;
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 16px;
+    transition: background 0.3s, padding-left 0.3s;
+    text-align: left;
+}
+
+nav a:hover {
+    background: #1554b3;
+    padding-left: 25px;
+}
+.btn {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #1554b3;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.btn:hover {
+    background-color: #0d3d85;
+}
+
+/* Main content */
+main {
+    flex: 1;
+    padding: 30px;
+}
+/* * {
+    box-sizing: border-box;
 }
 
 body {
@@ -31,4 +108,4 @@ nav a {
 nav a:hover {
     text-decoration: underline;
     color: #1554b3;
-}
+} */
