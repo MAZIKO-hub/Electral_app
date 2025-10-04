@@ -1,0 +1,140 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f5f7fa;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+/* Header */
+#header {
+    background-color: #1554b3;
+    color: white;
+    padding: 20px 0;
+    font-size: 1.5em;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.menu {
+    margin: 60px auto;
+    background: #fff;
+    padding: 30px 40px;
+    border-radius: 12px;
+    width: 350px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    text-align: left;
+}
+
+.menu label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.menu input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    outline: none;
+    transition: border 0.3s;
+    margin-bottom: 20px;
+}
+
+.menu input[type="text"]:focus {
+    border: 1px solid #1554b3;
+}
+
+.menu button {
+    display: block;
+    width: 100%;
+    background-color: #1554b3;
+    color: #fff;
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.menu button:hover {
+    background-color: #0d3d85;
+    transform: translateY(-2px);
+}
+
+.back {
+    display: inline-block;
+    margin-top: 40px;
+    padding: 10px 20px;
+    background-color: #1554b3;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    font-weight: bold;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.back:hover {
+    background-color: #0d3d85;
+    color: #fff;
+    text-decoration: none;
+}
+
+
+.details-table {
+    margin: 15px auto;
+    border-collapse: collapse;
+    width: 50%;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.details-table th,
+.details-table td {
+    border: 1px solid #1554b3;
+    padding: 10px;
+    text-align: left;
+}
+
+.details-table th {
+    background-color: #1554b3;
+    color: white;
+}
+
+.details {
+    margin-bottom: 20px;
+}
+.back {
+    display: inline-block;
+    margin-top: 30px;
+    padding: 12px 24px;
+    background-color: #1554b3;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.back:hover {
+    background-color: #0d3d85;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+.back:active {
+    transform: translateY(0);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+}

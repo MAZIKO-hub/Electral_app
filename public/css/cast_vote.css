@@ -1,21 +1,68 @@
 /* General Reset */
-body {
-    font-family: Arial, sans-serif;
+* {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
     background-color: #f4f6f9;
     color: #333;
-    text-align: center;
+    display: flex;
+    min-height: 100vh;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 220px;
+    background-color: #1e3a5f;
+    padding: 20px 0;
+    position: fixed;
+    height: 100vh;
+    left: 0;
+    top: 0;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
+}
+
+.sidebar a {
+    display: block;
+    color: #fff;
+    padding: 15px 25px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.sidebar a:hover {
+    background-color: #2c5282;
+}
+
+.sidebar a.active {
+    background-color: #2c5282;
+    border-left: 4px solid #1554b3;
+}
+
+/* Main Content */
+.main-content {
+    margin-left: 220px;
+    padding: 20px;
+    width: calc(100% - 220px);
+    flex: 1;
 }
 
 /* Header */
 #header {
     background-color: #1554b3;
     color: #fff;
-    padding: 15px 0;
+    padding: 20px;
     font-size: 24px;
     font-weight: bold;
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    margin-bottom: 30px;
+    text-align: center;
 }
 
 /* Navigation Bar */
@@ -37,7 +84,7 @@ nav a:hover {
     color: #1554b3;
 }
 
-/* Main Content Wrapper */
+/* Main Form Container */
 #main {
     max-width: 600px;
     margin: 40px auto;
@@ -51,6 +98,7 @@ nav a:hover {
 h2 {
     margin-bottom: 20px;
     color: #1554b3;
+    text-align: center;
 }
 
 /* Forms */
@@ -64,30 +112,160 @@ form {
 label {
     font-weight: bold;
     margin-bottom: 5px;
+    display: block;
+    color: #333;
 }
 
+/* Input Fields and Select Dropdowns */
 input,
-select,
-button {
-    padding: 10px;
+select {
+    padding: 12px 15px;
     font-size: 16px;
     border-radius: 6px;
     border: 1px solid #ccc;
     outline: none;
     width: 100%;
-    box-sizing: border-box;
+    background-color: #fff;
+    transition: border-color 0.3s ease;
+}
+
+input:focus,
+select:focus {
+    border-color: #1554b3;
+    box-shadow: 0 0 0 3px rgba(21, 84, 179, 0.1);
+}
+
+/* Better Select Dropdown Styling */
+select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23333' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    background-size: 12px;
+    padding-right: 40px;
+    cursor: pointer;
+    min-height: 45px;
+}
+
+select option {
+    padding: 10px;
+    font-size: 16px;
 }
 
 /* Buttons */
 button {
+    padding: 12px 20px;
+    font-size: 16px;
+    border-radius: 6px;
     background-color: #1554b3;
     color: #fff;
     font-weight: bold;
     cursor: pointer;
     transition: background 0.3s ease;
     border: none;
+    width: 100%;
 }
 
 button:hover {
     background-color: #0d3f87;
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+/* Profile Card */
+.profile-card {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    background: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 20px auto;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    transition: box-shadow 0.3s ease;
+}
+
+.profile-card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.profile-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    color: #fff;
+    flex-shrink: 0;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.profile-info {
+    flex: 1;
+    text-align: left;
+}
+
+.profile-info h3 {
+    margin: 0 0 8px 0;
+    font-size: 20px;
+    color: #1554b3;
+    font-weight: bold;
+}
+
+.profile-info p {
+    margin: 4px 0;
+    font-size: 14px;
+    color: #666;
+    line-height: 1.6;
+}
+
+.profile-info p strong {
+    color: #333;
+    font-weight: 600;
+}
+
+/* Back Link */
+.back {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.back a {
+    color: #1554b3;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.back a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+    }
+
+    .main-content {
+        margin-left: 0;
+        width: 100%;
+    }
+
+    .profile-card {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .profile-info {
+        text-align: center;
+    }
 }

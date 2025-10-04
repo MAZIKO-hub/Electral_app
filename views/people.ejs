@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>People</title>
+    <link rel="stylesheet" href="/css/people.css">
+</head>
+
+<body>
+    <div id="header">
+        <h1>all people</h1>
+    </div>
+    <button><a href="/home">go Back</a></button>
+    <table border="1" cellpadding="10">
+        <thead>
+            <tr>
+                <th>National ID</th>
+                <th>First Name</th>
+                <th>Surname</th>
+                <th>Gender</th>
+                <th>Age</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% people.forEach(p=> { %>
+                <tr>
+                    <td>
+                        <%= p.NationalID %>
+                    </td>
+                    <td>
+                        <%= p.FirstName %>
+                    </td>
+                    <td>
+                        <%= p.Surname %>
+                    </td>
+                    <td>
+                        <%= p.Gender %>
+                    </td>
+                    <td>
+                        <%= p.Age %>
+                    </td>
+                </tr>
+                <% }) %>
+        </tbody>
+    </table>
+</body>
+
+</html>

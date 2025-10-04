@@ -10,12 +10,17 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-const dbs = mysql.createConnection({
+const dbs = mysql.createPool({
     host: 'localhost',
     user: 'root',
     password: '',
-    database: 'electral_app_dbs'
+    database: 'electral_app_dbs',
+    waitForConnections: true,
+    connectionLimit: 10,
+    queueLimit: 0
 });
+const people_routes = require('./routes/people')(dbs);
+app.use('/', people_routes);
 
 const vote_routes = require('./routes/home');
 app.use('/', vote_routes);
@@ -26,7 +31,6 @@ app.use('/candidates', candidate_routes);
 const vote = require('./routes/vote')(dbs);
 app.use('/vote', vote);
 
-// Error handlers at the end
 app.use((err, req, res, next) => {
     console.error(err.stack);
     res.status(500).send('Something broke!');
@@ -36,12 +40,13 @@ app.use((req, res) => {
     res.status(404).render('404', { title: 'Page Not Found' });
 });
 
-dbs.connect(error => {
+dbs.getConnection((error, connection) => {
     if (error) {
         console.error('database could not connect: ' + error.stack);
         process.exit(1);
     }
-    console.log(`database connected ${dbs.threadId}`);
+    console.log(`database connected ${connection.threadId}`);
+    connection.release();
 
     app.listen(PORT, () => {
         console.log(`Server running at http://localhost:${PORT}`);

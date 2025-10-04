@@ -4,12 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/vote.css">
+    <link rel="stylesheet" href="/css/cast_vote.css">
     <title>
         <%= title %>
     </title>
-    <style>
-    </style>
 </head>
 
 <body>
@@ -24,10 +22,7 @@
         <div id="header">
             <h1>Cast Your Vote</h1>
         </div>
-
-        <!-- All Candidates Form -->
         <form action="/vote/submit_vote" method="POST" class="voting-section">
-            <!-- Presidents -->
             <h2>Vote for President</h2>
             <select name="president" required onchange="showDetails(this, 'presidentDetails')">
                 <option value="" disabled selected>Select a President</option>
@@ -36,14 +31,11 @@
                         data-sname="<%= candidate.Surname %>" data-party="<%= candidate.PartyName || 'Independent' %>"
                         data-position="<%= candidate.Position %>">
                         <%= candidate.FirstName %>
-                            <%= candidate.Surname %>
-                                (<%= candidate.PartyName || 'Independent' %>)
+                            <%= candidate.Surname %> (<%= candidate.PartyName || 'Independent' %>)
                     </option>
                     <% }); %>
             </select>
-            <div id="presidentDetails" class="details"></div>
-
-            <!-- MPs -->
+            <div id="presidentDetails"></div>
             <h2>Vote for Member of Parliament</h2>
             <select name="mp" required onchange="showDetails(this, 'mpDetails')">
                 <option value="" disabled selected>Select an MP</option>
@@ -52,14 +44,11 @@
                         data-sname="<%= candidate.Surname %>" data-party="<%= candidate.PartyName || 'Independent' %>"
                         data-position="<%= candidate.Position %>">
                         <%= candidate.FirstName %>
-                            <%= candidate.Surname %>
-                                (<%= candidate.PartyName || 'Independent' %>)
+                            <%= candidate.Surname %> (<%= candidate.PartyName || 'Independent' %>)
                     </option>
                     <% }); %>
             </select>
-            <div id="mpDetails" class="details"></div>
-
-            <!-- Councillors -->
+            <div id="mpDetails"></div>
             <h2>Vote for Councillor</h2>
             <select name="councillor" required onchange="showDetails(this, 'councillorDetails')">
                 <option value="" disabled selected>Select a Councillor</option>
@@ -68,12 +57,11 @@
                         data-sname="<%= candidate.Surname %>" data-party="<%= candidate.PartyName || 'Independent' %>"
                         data-position="<%= candidate.Position %>">
                         <%= candidate.FirstName %>
-                            <%= candidate.Surname %>
-                                (<%= candidate.PartyName || 'Independent' %>)
+                            <%= candidate.Surname %> (<%= candidate.PartyName || 'Independent' %>)
                     </option>
                     <% }); %>
             </select>
-            <div id="councillorDetails" class="details"></div>
+            <div id="councillorDetails"></div>
 
             <button type="submit" class="submit-btn">Submit All Votes</button>
         </form>
@@ -91,13 +79,15 @@
 
             const detailsDiv = document.getElementById(detailsId);
             detailsDiv.innerHTML = `
-                <table class="details-table">
-                    <tr><th>First Name</th><td>${fname}</td></tr>
-                    <tr><th>Surname</th><td>${sname}</td></tr>
-                    <tr><th>Party</th><td>${party}</td></tr>
-                    <tr><th>Position</th><td>${position}</td></tr>
-                </table>
-            `;
+        <div class="profile-card">
+          <div class="profile-avatar">${fname.charAt(0)}${sname.charAt(0)}</div>
+          <div class="profile-info">
+            <h3>${fname} ${sname}</h3>
+            <p><strong>Party:</strong> ${party}</p>
+            <p><strong>Position:</strong> ${position}</p>
+          </div>
+        </div>
+      `;
         }
     </script>
 </body>

@@ -29,7 +29,7 @@ nav a:hover {
 }
 
 #main {
-    max-width: 600px;
+    max-width: 900px;
     margin: 30px auto;
     background: white;
     padding: 25px;
@@ -77,13 +77,17 @@ button {
 button:hover {
     background: #0d3d7a;
 }
+
 .back {
     margin-top: 20px;
 }
+
+/* Larger Table Styling */
 table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
+    font-size: 16px;
 }
 
 thead {
@@ -93,15 +97,26 @@ thead {
 
 th,
 td {
-    padding: 12px;
-    border: 1px solid #ddd;
+    padding: 16px 20px;
+    border: 2px solid #1554b3;
     text-align: center;
 }
 
-tr:nth-child(even) {
+th {
+    font-weight: bold;
+    font-size: 17px;
+}
+
+/* Remove hover effect from header row */
+thead tr:hover {
+    background-color: #1554b3;
+}
+
+/* Hover only on body rows */
+tbody tr:nth-child(even) {
     background-color: #f9f9f9;
 }
 
-tr:hover {
+tbody tr:hover {
     background-color: #e7f0fa;
 }
