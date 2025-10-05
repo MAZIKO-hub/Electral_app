@@ -16,27 +16,38 @@
         <form action="/candidates/edit" method="POST">
             <fieldset>
                 <legend>Identify Candidate</legend>
-                <label for="id">Candidate ID:</label><br>
-                <input type="number" id="id" name="id" required><br><br>
+                <label for="id">Select Candidate:</label><br>
+                <select id="id" name="id" required
+                    onchange="showDetails(this, 'candidateDetails')">
+                    <option value="" disabled selected>Select a Candidate</option>
+                    <% candidates.forEach(c => { %>
+                    <option value="<%= c.CandidateID %>" data-fname="<%= c.FirstName %>"
+                        data-sname="<%= c.Surname %>" data-party="<%= c.PartyName || 'Independent' %>"
+                        data-position="<%= c.PositionTitle %>">
+                        <%= c.FirstName %> <%= c.Surname %> (<%= c.PartyName || 'Independent' %>)
+                    </option>
+                    <% }) %>
+                </select><br><br>
+                <div id="candidateDetails" class="candidate-details"></div>
             </fieldset>
             <fieldset>
                 <legend>Party</legend>
                 <label for="party">Select New Party:</label><br>
                 <select id="party" name="newParty" required>
-                    <option value="">-- Select a Party --</option>
-                    <option value="1">Party A</option>
-                    <option value="2">Party B</option>
-                    <option value="3">Party C</option>
+                    <option value="" disabled selected>-- Select a Party --</option>
+                    <% parties.forEach(p => { %>
+                    <option value="<%= p.PartyID %>"><%= p.PartyName %></option>
+                    <% }) %>
                 </select><br><br>
             </fieldset>
             <fieldset>
                 <legend>Position</legend>
                 <label for="position">Select New Position:</label><br>
                 <select id="position" name="newPosition" required>
-                    <option value="">-- Select a Position --</option>
-                    <option value="1">President</option>
-                    <option value="2">Member of Parliament</option>
-                    <option value="3">Councillor</option>
+                    <option value="" disabled selected>-- Select a Position --</option>
+                    <% positions.forEach(pos => { %>
+                    <option value="<%= pos.PositionID %>"><%= pos.Title %></option>
+                    <% }) %>
                 </select><br><br>
             </fieldset>
 
@@ -46,6 +57,35 @@
             <a href="/candidates">Back to Candidates</a>
         </div>
     </div>
+
+    <script>
+    function showDetails(selectEl, detailsId) {
+        const option = selectEl.options[selectEl.selectedIndex];
+        if (!option || !option.value) return;
+
+        const fname = option.getAttribute("data-fname");
+        const sname = option.getAttribute("data-sname");
+        const party = option.getAttribute("data-party");
+        const position = option.getAttribute("data-position");
+
+        const detailsDiv = document.getElementById(detailsId);
+        detailsDiv.innerHTML = `
+            <div class="profile-card">
+                <div class="profile-avatar">${fname.charAt(0)}${sname.charAt(0)}</div>
+                <div class="profile-info">
+                    <h3>${fname} ${sname}</h3>
+                    <p><strong>Party:</strong> ${party}</p>
+                    <p><strong>Position:</strong> ${position}</p>
+                </div>
+            </div>
+        `;
+        // Animate the card
+        setTimeout(() => {
+            const card = detailsDiv.querySelector('.profile-card');
+            if (card) card.classList.add('show');
+        }, 10);
+    }
+    </script>
 </body>
 
 </html>

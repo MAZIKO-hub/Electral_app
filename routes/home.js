@@ -13,20 +13,13 @@ router.get("/home", (req, res) => {
 router.get("/vote", (req, res) => {
     res.render("vote");
 });
-router.get("/voters", (req, res) => {
-    res.render("voters");
+router.get("/register", (req, res) => {
+    res.render("register", { title: "Register" });
 });
-router.get("/parties", (req, res) => {
-    res.render("parties");
-}); 
 router.get("/results", (req, res) => {
     res.render("results");
 });
 router.get("/statistics", (req, res) => {
     res.render("statistics");
 }); 
-// router.get("/people", (req, res) => {
-//     res.render("people");
-// });
-
 module.exports = router;

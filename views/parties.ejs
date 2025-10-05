@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Party Details</title>
+    <link rel="stylesheet" href="/css/people.css">
+</head>
+<body>
+    <div id="header">
+        <h1>All Parties</h1><br>
+    </div><br>
+
+    <div id="main">
+        <table>
+            <thead>
+                <tr>
+                    <th>Party ID</th>
+                    <th>Party Name</th>
+                    <th>Number of Candidates Running</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% parties.forEach(party => { %>
+                    <tr>
+                        <td><%= party.PartyID %></td>
+                        <td><%= party.PartyName %></td>
+                        <td><%= party.NumberOfCandidatesRunning %></td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table><br>
+        <button><div class="back">
+            <a href="/home">Back Home</a>
+        </div></button>
+    </div>
+</body>
+</html>

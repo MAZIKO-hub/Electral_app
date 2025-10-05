@@ -11,9 +11,11 @@
     <div id="header">
         <h1>Voter Registration</h1>
     </div>
+
     <div id="main">
         <h2>Register as a Voter</h2>
-        <form action="/voter/register" method="POST">
+
+        <form action="/register" method="POST" id="registerForm">
             <fieldset>
                 <legend>Personal Information</legend>
 
@@ -37,17 +39,19 @@
                 <label for="age">Age:</label><br>
                 <input type="number" id="age" name="age" min="18" required><br><br>
             </fieldset>
+
             <fieldset>
                 <legend>Voter Information</legend>
 
                 <label for="status">Status:</label><br>
                 <select id="status" name="status" required>
-                    <option value="Registered">Registered</option>
-                    <option value="Not Registered">Not Registered</option>
+                    <option value="">-- Select Status --</option>
+                    <option value="Active">Active</option>
+                    <option value="Inactive">Inactive</option>
                 </select><br><br>
 
                 <label for="pollingStation">Polling Station:</label><br>
-                <select id="pollingStation" name="pollingStationID" required>
+                <select id="pollingStation" name="pollingStationID">
                     <option value="">-- Select Polling Station --</option>
                     <option value="1">Station 1</option>
                     <option value="2">Station 2</option>
@@ -57,9 +61,20 @@
 
             <button type="submit">Register</button>
         </form>
-        <div class="back">
-            <a href="/home">Go back to Home page</a>
+        <button><div class="back">
+            <a href="/home">Back to Home</a>
+        </div></button>
     </div>
+    <script>
+        document.getElementById("registerForm").addEventListener("submit", function (e) {
+            const id = document.getElementById("nationalID").value.trim();
+            const name = document.getElementById("firstName").value.trim();
+            if (id === "" || name === "") {
+                e.preventDefault();
+                alert("Please fill in all required fields.");
+            }
+        });
+    </script>
 </body>
 
 </html>

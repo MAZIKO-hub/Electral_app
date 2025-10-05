@@ -22,7 +22,15 @@
         <div id="header">
             <h1>Cast Your Vote</h1>
         </div>
-        <form action="/vote/submit_vote" method="POST" class="voting-section">
+
+        <!-- Voting Form -->
+        <form action="/vote/submit_vote" method="POST" class="voting-section" onsubmit="return confirmSubmit()">
+
+            <!-- Hidden fields to pass voterID and electionID -->
+            <input type="hidden" name="voterID" value="<%= voterID %>">
+            <input type="hidden" name="electionID" value="<%= electionID %>">
+
+            <!-- PRESIDENT -->
             <h2>Vote for President</h2>
             <select name="president" required onchange="showDetails(this, 'presidentDetails')">
                 <option value="" disabled selected>Select a President</option>
@@ -31,11 +39,14 @@
                         data-sname="<%= candidate.Surname %>" data-party="<%= candidate.PartyName || 'Independent' %>"
                         data-position="<%= candidate.Position %>">
                         <%= candidate.FirstName %>
-                            <%= candidate.Surname %> (<%= candidate.PartyName || 'Independent' %>)
+                            <%= candidate.Surname %>
+                                (<%= candidate.PartyName || 'Independent' %>)
                     </option>
                     <% }); %>
             </select>
             <div id="presidentDetails"></div>
+
+            <!-- MP -->
             <h2>Vote for Member of Parliament</h2>
             <select name="mp" required onchange="showDetails(this, 'mpDetails')">
                 <option value="" disabled selected>Select an MP</option>
@@ -44,11 +55,14 @@
                         data-sname="<%= candidate.Surname %>" data-party="<%= candidate.PartyName || 'Independent' %>"
                         data-position="<%= candidate.Position %>">
                         <%= candidate.FirstName %>
-                            <%= candidate.Surname %> (<%= candidate.PartyName || 'Independent' %>)
+                            <%= candidate.Surname %>
+                                (<%= candidate.PartyName || 'Independent' %>)
                     </option>
                     <% }); %>
             </select>
             <div id="mpDetails"></div>
+
+            <!-- COUNCILLOR -->
             <h2>Vote for Councillor</h2>
             <select name="councillor" required onchange="showDetails(this, 'councillorDetails')">
                 <option value="" disabled selected>Select a Councillor</option>
@@ -57,17 +71,20 @@
                         data-sname="<%= candidate.Surname %>" data-party="<%= candidate.PartyName || 'Independent' %>"
                         data-position="<%= candidate.Position %>">
                         <%= candidate.FirstName %>
-                            <%= candidate.Surname %> (<%= candidate.PartyName || 'Independent' %>)
+                            <%= candidate.Surname %>
+                                (<%= candidate.PartyName || 'Independent' %>)
                     </option>
                     <% }); %>
             </select>
             <div id="councillorDetails"></div>
 
+            <!-- Submit -->
             <button type="submit" class="submit-btn">Submit All Votes</button>
         </form>
     </div>
 
     <script>
+        // Show candidate details
         function showDetails(selectEl, detailsId) {
             const option = selectEl.options[selectEl.selectedIndex];
             if (!option || !option.value) return;
@@ -79,15 +96,20 @@
 
             const detailsDiv = document.getElementById(detailsId);
             detailsDiv.innerHTML = `
-        <div class="profile-card">
-          <div class="profile-avatar">${fname.charAt(0)}${sname.charAt(0)}</div>
-          <div class="profile-info">
-            <h3>${fname} ${sname}</h3>
-            <p><strong>Party:</strong> ${party}</p>
-            <p><strong>Position:</strong> ${position}</p>
-          </div>
-        </div>
-      `;
+                <div class="profile-card">
+                    <div class="profile-avatar">${fname.charAt(0)}${sname.charAt(0)}</div>
+                    <div class="profile-info">
+                        <h3>${fname} ${sname}</h3>
+                        <p><strong>Party:</strong> ${party}</p>
+                        <p><strong>Position:</strong> ${position}</p>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Confirm submission
+        function confirmSubmit() {
+            return confirm("Are you sure you want to submit your vote?");
         }
     </script>
 </body>

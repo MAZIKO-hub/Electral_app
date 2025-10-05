@@ -10,12 +10,11 @@ module.exports = (dbs) => {
     router.get('/vote', (req, res) => {
         res.render("vote", { title: "Vote" });
     });
+    
 
-    router.get('/register', (req, res) => {
-        res.render("register", { title: "Register" });
-    });
-
-    // Check voter route
+    // router.get('/register', (req, res) => {
+    //     res.render("register", { title: "Register" });
+    // });
     router.post("/check_voter", (req, res) => {
         console.log("Request body:", req.body);
 
@@ -47,7 +46,7 @@ module.exports = (dbs) => {
             if (results.length > 0) {
                 const voter = results[0];
                 console.log("Voter found and registered:", voter);
-                res.redirect("/vote/cast_vote");
+                res.redirect(`/vote/cast_vote?voterID=${voter.VoterID}`);
             } else {
                 console.log("No voter found with that NationalID");
                 res.render("not_registered", {
@@ -58,6 +57,11 @@ module.exports = (dbs) => {
         });
     });
     router.get('/cast_vote', (req, res) => {
+        // You need to get voterID and electionID here
+        // For example, from session, query, or previous step
+        const voterID = req.query.voterID || req.session.voterID; // adjust as needed
+        const electionID = 1; // Use 1 as a placeholder
+
         const presidentSql = `
         SELECT c.CandidateID, p.FirstName, p.Surname, pr.PartyName, pos.Title AS Position
         FROM Candidate c
@@ -94,7 +98,9 @@ module.exports = (dbs) => {
                         title: "Cast Your Vote",
                         presidents,
                         mps,
-                        councillors
+                        councillors,
+                        voterID,
+                        electionID
                     });
                 });
             });
@@ -103,16 +109,46 @@ module.exports = (dbs) => {
 
     // Submit vote route
     router.post('/submit_vote', (req, res) => {
-        const { president, mp, councillor, voterID } = req.body;
-
+        const { president, mp, councillor, voterID, electionID } = req.body;
         console.log("Vote submission:", req.body);
 
-        // Insert votes into Vote table
-        // You'll need to implement this based on your Vote table structure
+        // Get current timestamp
+        const timestamp = new Date();
 
-        res.render("vote_success", {
-            title: "Vote Submitted",
-            message: "Thank you for voting! Your vote has been recorded."
+        // You may need to fetch voterID from session or database if not in req.body
+        // You may need to determine electionID based on your app logic
+
+        // Insert votes for each position
+        const voteSql = `
+            INSERT INTO Vote (VoterID, CandidateID, TimeStamp, ElectionID)
+            VALUES (?, ?, ?, ?)
+        `;
+
+        // Insert President vote
+        dbs.query(voteSql, [voterID, president, timestamp, electionID], (err) => {
+            if (err) {
+                console.error("Error inserting president vote:", err);
+                return res.status(500).send("Error recording president vote.");
+            }
+            // Insert MP vote
+            dbs.query(voteSql, [voterID, mp, timestamp, electionID], (err) => {
+                if (err) {
+                    console.error("Error inserting MP vote:", err);
+                    return res.status(500).send("Error recording MP vote.");
+                }
+                // Insert Councillor vote
+                dbs.query(voteSql, [voterID, councillor, timestamp, electionID], (err) => {
+                    if (err) {
+                        console.error("Error inserting councillor vote:", err);
+                        return res.status(500).send("Error recording councillor vote.");
+                    }
+                    // All votes recorded, show success
+                    res.render("vote_success", {
+                        title: "Vote Submitted",
+                        message: "Thank you for voting! Your vote has been recorded."
+                    });
+                });
+            });
         });
     });
 

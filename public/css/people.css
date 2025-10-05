@@ -23,7 +23,7 @@
   }
 
   thead {
-      background: #1f7a9c;
+      background: #1554b3;
       color: white;
   }
 
@@ -56,19 +56,19 @@
       background: #1f7a9c;
       color: white;
   }
-  button {
+button {
       background: #1554b3;
+      text-decoration: none;
       color: white;
-      font-weight: bold;
       border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
       cursor: pointer;
-      transition: background 0.3s;
-        padding: 10px 20px;
-        border-radius: 5px;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-        height: 3rem;
-        text-decoration: none;
-        display: inline-flex;
-        align-items: center;
-        text-decoration-color: #f3f7fb;
+      font-size: 16px;
+      transition: background 0.3s ease;
   }
+
+  button:hover {
+      background: #bcd3f1;
+  }
+  

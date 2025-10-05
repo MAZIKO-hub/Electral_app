@@ -77,3 +77,34 @@ button {
 button:hover {
     background: #0d3d7a;
 }
+.candidate-details {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    max-width: 350px;
+}
+
+.profile-card {
+    opacity: 0;
+    transition: opacity 0.4s;
+    background: #f8f8f8;
+    border-radius: 8px;
+    padding: 16px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.profile-card.show {
+    opacity: 1;
+}
+
+.profile-avatar {
+    width: 48px;
+    height: 48px;
+    background: #2a4d8f;
+    color: #fff;
+    border-radius: 50%;
+    font-size: 1.5em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 8px;
+}

@@ -57,8 +57,7 @@
  }
 
  input,
- select,
- button {
+ select{
      width: 95%;
      padding: 10px;
      margin-top: 5px;
@@ -67,14 +66,20 @@
  }
 
  button {
-     background: #1554b3;
-     color: white;
-     font-weight: bold;
-     border: none;
-     cursor: pointer;
-     transition: background 0.3s;
+    text-decoration-line: none;
+    width: 50%;
+    padding: 10px;
+    margin-top: 10px;
+    background: #1554b3;
+    color: white;
+    font-weight: bold;
+    border: 1px solid #1554b3;
+    border-radius: 6px;
+    cursor: pointer;
+    text-decoration: none;
  }
 
  button:hover {
-     background: #0d3d7a;
+     background: #bdcadb;
+        color: #1554b3;
  }

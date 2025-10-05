@@ -16,17 +16,24 @@
         <form action="/candidates/add" method="POST">
             <fieldset>
                 <legend>Personal Info</legend>
-                <label for="nationalID">National ID:</label><br>
-                <input type="text" id="nationalID" name="nationalID" required><br><br>
+                <label for="nationalID">Select Person:</label><br>
+                <select id="nationalID" name="nationalID" required>
+                    <option value="" disabled selected>-- Select a Person --</option>
+                    <% people.forEach(person => { %>
+                    <option value="<%= person.NationalID %>">
+                        <%= person.FirstName %> <%= person.Surname %> (ID: <%= person.NationalID %>)
+                    </option>
+                    <% }) %>
+                </select><br><br>
             </fieldset>
             <fieldset>
                 <legend>Party</legend>
                 <label for="party">Select Party:</label><br>
                 <select id="party" name="partyID" required>
                     <option value="">-- Select a Party --</option>
-                    <option value="1">Party A</option>
-                    <option value="2">Party B</option>
-                    <option value="3">Party C</option>
+                    <% parties.forEach(party => { %>
+                    <option value="<%= party.PartyID %>"><%= party.PartyName %></option>
+                    <% }) %>
                 </select><br><br>
             </fieldset>
             <fieldset>
@@ -34,9 +41,9 @@
                 <label for="position">Select Position:</label><br>
                 <select id="position" name="positionID" required>
                     <option value="">-- Select a Position --</option>
-                    <option value="1">President</option>
-                    <option value="2">Member of Parliament</option>
-                    <option value="3">Councillor</option>
+                    <% positions.forEach(pos => { %>
+                    <option value="<%= pos.PositionID %>"><%= pos.Title %></option>
+                    <% }) %>
                 </select><br><br>
             </fieldset>
 

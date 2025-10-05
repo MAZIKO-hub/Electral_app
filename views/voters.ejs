@@ -1,26 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/voters.css">
-    <title>voters</title>
+    <title>Voters</title>
 </head>
+
 <body>
     <div id="header">
-        <h1>VOTERS</h1>
+        <h1>Registered Voters</h1>
     </div>
-    <nav>
-        <a href="/vote">Vote</a> |
+    <button><a href="/home">go back </a></button>
+
+    <!-- <nav>
         <a href="/home">Home</a> |
+        <a href="/vote">Vote</a> |
         <a href="/candidates">Candidates</a> |
         <a href="/parties">Parties</a>
-    </nav>
-    <h1>List of Voters</h1>
-    <ul>
-        <% voters.forEach(voter => { %>
-            <li><%= voter.name %> - <%= voter.email %></li>
-        <% }); %>
-    </ul>
+    </nav> -->
+
+    <main>
+        <h2>List of Registered Voters</h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Voter ID</th>
+                    <th>National ID</th>
+                    <th>surname</th>
+                    <th>First Name</th>
+                    <th>Gender</th>
+                    <th>Age</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% if (voters && voters.length> 0) { %>
+                    <% voters.forEach(voter=> { %>
+                        <tr>
+                            <td>
+                                <%= voter.VoterID %>
+                            </td>
+                            <td>
+                                <%= voter.NationalID %>
+                            </td>
+                            <td>
+                                <%= voter.FirstName %>
+                            </td>
+                            <td>
+                                <%= voter.Surname %>
+                            </td>
+                            <td>
+                                <%= voter.Gender %>
+                            </td>
+                            <td>
+                                <%= voter.Age %>
+                            </td>
+                        </tr>
+                        <% }); %>
+                            <% } else { %>
+                                <tr>
+                                    <td colspan="3">No voters found in the database.</td>
+                                </tr>
+                                <% } %>
+            </tbody>
+        </table>
+    </main>
 </body>
+
 </html>
