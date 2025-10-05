@@ -36,39 +36,23 @@
   tr:nth-child(even) {
       background: #f3f7fb;
   }
-
-  tr:hover {
-      background: #e9f3f9;
-  }
-
-  .btn-view {
-      background: none;
-      border: 2px solid #1f7a9c;
-      color: #1f7a9c;
-      padding: 6px 14px;
-      border-radius: 20px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: all 0.3s ease;
-  }
-
-  .btn-view:hover {
-      background: #1f7a9c;
-      color: white;
-  }
 button {
       background: #1554b3;
-      text-decoration: none;
       color: white;
       border: none;
       padding: 10px 20px;
       border-radius: 5px;
       cursor: pointer;
-      font-size: 16px;
-      transition: background 0.3s ease;
+      transition: background 0.3s;
+      margin-right: 10px;
+  }
+
+  button a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
   }
 
   button:hover {
-      background: #bcd3f1;
+      background: #0d3a7a;
   }
-  

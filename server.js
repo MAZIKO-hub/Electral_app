@@ -19,6 +19,10 @@ const dbs = mysql.createPool({
     connectionLimit: 10,
     queueLimit: 0
 });
+const results_routes = require('./routes/results')(dbs);
+app.use('/', results_routes);
+// const statistics_routes = require('./routes/statistics')(dbs);
+// app.use('/', statistics_routes);
 const parties_routes = require('./routes/parties')(dbs);
 app.use('/', parties_routes);
 const candidates_routes = require('./routes/candidates')(dbs);

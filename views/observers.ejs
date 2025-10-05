@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Observers</title>
+    <link rel="stylesheet" href="/css/people.css">
+</head>
+
+<body>
+    <div id="header">
+        <h1>Observers</h1>
+    </div>
+
+    <button><a href="/home">Go Back</a></button>
+    <button><a href="/people">People</a></button>
+    <button><a href="/election_officials">Election Officials</a></button><br><br>
+    <table border="1" cellpadding="10">
+        <thead>
+            <tr>
+                <th>Observer ID</th>
+                <th>Name</th>
+                <th>Organization</th>
+                <th>Contact</th>
+                <th>Assigned District</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% observers.forEach(o=> { %>
+                <tr>
+                    <td>
+                        <%= o.ObserverID %>
+                    </td>
+                    <td>
+                        <%= o.Name %>
+                    </td>
+                    <td>
+                        <%= o.Organization %>
+                    </td>
+                    <td>
+                        <%= o.Contact %>
+                    </td>
+                    <td>
+                        <%= o.AssignedDistrict || 'Unassigned' %>
+                    </td>
+                </tr>
+                <% }) %>
+        </tbody>
+    </table>
+</body>
+
+</html>

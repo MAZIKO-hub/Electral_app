@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        <%= title %>
+    </title>
+    <link rel="stylesheet" href="/css/people.css">
+</head>
+
+<body>
+   
+    <!-- <div class="sidebar">
+        <a href="/officials">Officials</a>
+        <a href="/officials/add">Add Official</a>
+        <a href="/observers">Observers</a>
+        <a href="/people">People</a>
+        <a href="/home">Home</a>
+    </div> -->
+
+    <div class="main-content">
+        <div id="header">
+            <h1>Election Officials</h1>
+        </div><br>
+ <button><a href="/home">Go Back</a></button>
+    <button><a href="/people">People</a></button>
+    <button><a href="/observers">Observers</a></button>
+    <br><br>
+        <table>
+            <thead>
+                <tr>
+                    <th>Official ID</th>
+                    <th>Name</th>
+                    <th>National ID</th>
+                    <th>Role</th>
+                    <th>Assigned Station</th>
+                    <th>Location</th>
+                    <th>Date Assigned</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% if (officials.length> 0) { %>
+                    <% officials.forEach(o=> { %>
+                        <tr>
+                            <td>
+                                <%= o.OfficialID %>
+                            </td>
+                            <td>
+                                <%= o.FirstName %>
+                                    <%= o.Surname %>
+                            </td>
+                            <td>
+                                <%= o.NationalID %>
+                            </td>
+                            <td>
+                                <%= o.Role %>
+                            </td>
+                            <td>
+                                <%= o.AssignedStation || 'Unassigned' %>
+                            </td>
+                            <td>
+                                <% if (o.WardName && o.ConstituencyName) { %>
+                                    <%= o.WardName %>, <%= o.ConstituencyName %>
+                                            <% } else { %>
+                                                N/A
+                                                <% } %>
+                            </td>
+                            <td>
+                                <%= new Date(o.DateAssigned).toLocaleDateString() %>
+                            </td>
+                            <td>
+                                <form action="/officials/delete/<%= o.OfficialID %>" method="POST"
+                                    style="display: inline;">
+                                </form>
+                            </td>
+                        </tr>
+                        <% }) %>
+                            <% } else { %>
+                                <tr>
+                                    <td colspan="8" style="text-align: center;">No election officials assigned yet.</td>
+                                </tr>
+                                <% } %>
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>

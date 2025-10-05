@@ -1,11 +1,185 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Election Results</title>
+    <link rel="stylesheet" href="/css/people.css">
 </head>
+
 <body>
-    
+    <div id="header">
+        <h1>Election Results</h1>
+    </div>
+
+    <div class="back">
+        <a href="/home">Go Back to Home</a>
+    </div>
+
+    <!-- Presidential Results -->
+    <div class="results-section">
+        <h2>Presidential Results</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Candidate Name</th>
+                    <th>Party</th>
+                    <th>Votes Received</th>
+                    <th>Percentage</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% const presidents=results.filter(r=> r.Position === 'President');
+                    const totalPresVotes = presidents.reduce((sum, r) => sum + r.VoteCount, 0);
+                    %>
+                    <% if (presidents.length> 0) { %>
+                        <% presidents.forEach(result=> { %>
+                            <tr>
+                                <td>
+                                    <%= result.FirstName %>
+                                        <%= result.Surname %>
+                                </td>
+                                <td>
+                                    <%= result.PartyName || 'Independent' %>
+                                </td>
+                                <td>
+                                    <%= result.VoteCount %>
+                                </td>
+                                <td>
+                                    <%= totalPresVotes> 0 ? ((result.VoteCount / totalPresVotes) * 100).toFixed(2) : 0
+                                        %>%
+                                </td>
+                            </tr>
+                            <% }) %>
+                                <tr style="font-weight: bold; background-color: #e7f0fa;">
+                                    <td colspan="2">Total Votes Cast</td>
+                                    <td>
+                                        <%= totalPresVotes %>
+                                    </td>
+                                    <td>100%</td>
+                                </tr>
+                                <% } else { %>
+                                    <tr>
+                                        <td colspan="4" style="text-align: center;">No votes cast yet</td>
+                                    </tr>
+                                    <% } %>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- MP Results -->
+    <div class="results-section">
+        <h2>Member of Parliament Results</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Candidate Name</th>
+                    <th>Party</th>
+                    <th>Constituency</th>
+                    <th>Votes Received</th>
+                    <th>Percentage</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% const mps=results.filter(r=> r.Position === 'Member of Parliament');
+                    const totalMPVotes = mps.reduce((sum, r) => sum + r.VoteCount, 0);
+                    %>
+                    <% if (mps.length> 0) { %>
+                        <% mps.forEach(result=> { %>
+                            <tr>
+                                <td>
+                                    <%= result.FirstName %>
+                                        <%= result.Surname %>
+                                </td>
+                                <td>
+                                    <%= result.PartyName || 'Independent' %>
+                                </td>
+                                <td>
+                                    <%= result.ConstituencyName || 'N/A' %>
+                                </td>
+                                <td>
+                                    <%= result.VoteCount %>
+                                </td>
+                                <td>
+                                    <%= totalMPVotes> 0 ? ((result.VoteCount / totalMPVotes) * 100).toFixed(2) : 0 %>%
+                                </td>
+                            </tr>
+                            <% }) %>
+                                <tr style="font-weight: bold; background-color: #e7f0fa;">
+                                    <td colspan="3">Total Votes Cast</td>
+                                    <td>
+                                        <%= totalMPVotes %>
+                                    </td>
+                                    <td>100%</td>
+                                </tr>
+                                <% } else { %>
+                                    <tr>
+                                        <td colspan="5" style="text-align: center;">No votes cast yet</td>
+                                    </tr>
+                                    <% } %>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Councillor Results -->
+    <div class="results-section">
+        <h2>Councillor Results</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Candidate Name</th>
+                    <th>Party</th>
+                    <th>Ward</th>
+                    <th>Constituency</th>
+                    <th>Votes Received</th>
+                    <th>Percentage</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% const councillors=results.filter(r=> r.Position === 'Councillor');
+                    const totalCouncilVotes = councillors.reduce((sum, r) => sum + r.VoteCount, 0);
+                    %>
+                    <% if (councillors.length> 0) { %>
+                        <% councillors.forEach(result=> { %>
+                            <tr>
+                                <td>
+                                    <%= result.FirstName %>
+                                        <%= result.Surname %>
+                                </td>
+                                <td>
+                                    <%= result.PartyName || 'Independent' %>
+                                </td>
+                                <td>
+                                    <%= result.WardName || 'N/A' %>
+                                </td>
+                                <td>
+                                    <%= result.ConstituencyName || 'N/A' %>
+                                </td>
+                                <td>
+                                    <%= result.VoteCount %>
+                                </td>
+                                <td>
+                                    <%= totalCouncilVotes> 0 ? ((result.VoteCount / totalCouncilVotes) * 100).toFixed(2)
+                                        : 0 %>%
+                                </td>
+                            </tr>
+                            <% }) %>
+                                <tr style="font-weight: bold; background-color: #e7f0fa;">
+                                    <td colspan="4">Total Votes Cast</td>
+                                    <td>
+                                        <%= totalCouncilVotes %>
+                                    </td>
+                                    <td>100%</td>
+                                </tr>
+                                <% } else { %>
+                                    <tr>
+                                        <td colspan="6" style="text-align: center;">No votes cast yet</td>
+                                    </tr>
+                                    <% } %>
+            </tbody>
+        </table>
+    </div>
 </body>
+
 </html>
